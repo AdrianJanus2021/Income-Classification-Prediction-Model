@@ -1,6 +1,6 @@
 # Income-Classification-Prediction-Model
 
-##Description of the problem
+## Description of the problem
 
 The problem presented by the dataset is one that everyone at one point will face. That is
 earning money. Everyone would rather earn more than less. By building this model one can
@@ -10,7 +10,7 @@ but how much those things impact your future, isn’t that clear. By creating th
 help less wealthy people come to necessary conclusions which will help them shape a better
 future for themselves.
 
-##Data
+## Data
 
 Data has been provided by Lorenzo De Tomasi on the kaggle website.
 https://www.kaggle.com/datasets/lodetomasi1995/income-classification/data
@@ -50,9 +50,9 @@ Based on this data we will be able to build a predictive model allowing us to pr
 a person has an income lower or higher than 50K. However before building the model we
 need to prepare the dataset to get the most accurate results possible.
 
-##A way to solve the problem
+## A way to solve the problem
 
-###1. Data set analysis
+### 1. Data set analysis
 
 At the beginning the data was cleaned and prepared for later training.
 Firstly the whole dataset has been analyzed, errors and missing values were found,
@@ -96,7 +96,7 @@ Mode (most frequent value).
 
 ![image](https://github.com/user-attachments/assets/ccec4c9d-03d9-4929-a867-928cfd9ea14f)
 
-###2. Trimming outliers
+### 2. Trimming outliers
 
 In the search for outliers the scatter plot has been used, which is located in the chart
 tab.
@@ -129,7 +129,7 @@ In order to fix that, a condition in the filter recipe was introduced.
 ![image](https://github.com/user-attachments/assets/06792dfc-40eb-4b91-bf90-638dea42790d)
 
 
-###3. Feature engineering
+### 3. Feature engineering
 
 a) For further research it is wise to extend the categorisation with
 grouping people by their age with:
@@ -148,18 +148,18 @@ capital gain it’s true or false these are based on statistics shows below.
 ![image](https://github.com/user-attachments/assets/e1dd157a-2342-4e21-9289-24fa6f2a6449)
 
 
-###4. Metadata editing
+### 4. Metadata editing
    
 Dataiku correctly assigned proper meanings and types. No further action was
 required.
 
-###5. Missing data completion
+### 5. Missing data completion
 
 The missing data has been dealt with.
 In workclass, occupation and native-country columns, missing rows have been filled
 with the most frequently occurring values.
 
-###6. Selection of learning algorithm
+### 6. Selection of learning algorithm
 
 The newly created column “high_income” from the dataset has been chosen, as the
 attribute on which to create the prediction model.
@@ -224,7 +224,7 @@ It is safe to make an assumption that married couples are capable of sustaining 
 income. While education (surprisingly) takes second place in importance. Obviously
 better education may lead to better earnings.
 
-##Discussion of the results and evaluation of
+## Discussion of the results and evaluation of
 the model
 
 After performing all the changes and choosing this time only the most interesting algorithms,
@@ -283,7 +283,7 @@ because of having high income.
 
 ![image](https://github.com/user-attachments/assets/0f5f3296-4923-436f-a724-d21751e652d8)
 
-##Summary
+## Summary
 
 Ultimately the models predictions had quite high accuracy and gave some interesting results,
 given that the dataset wasn’t as well balanced as one might hope for. We concluded that the
