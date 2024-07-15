@@ -215,6 +215,109 @@ It is safe to make an assumption that married couples are capable of sustaining 
 income. While education (surprisingly) takes second place in importance. Obviously
 better education may lead to better earnings.
 
+Discussion of the results and evaluation of
+the model
+After performing all the changes and choosing this time only the most interesting algorithms,
+that being: Gradient Boosted Trees, Logistic Regression, LightGBM and XGBoost. New
+training has been conducted.
+
+![image](https://github.com/user-attachments/assets/7b4b356f-732b-4b43-ad41-fbdc893e7d1f)
+
+What is interesting, is that whatever algorithm has been chosen after removing both marital
+status and relationship, is that the “age-range” of the person seemed to become the most
+important feature. This makes sense as with age people tend to get better paying jobs, thanks
+to all the experience they acquired over the years and thanks to all the promotions and
+bonuses they are more likely to receive, rather than someone young, who is just starting their
+career.
+As stated before we decided to keep marital status and remove relationship feature in the
+session that was most successful and has given the best overall results.
+
+![image](https://github.com/user-attachments/assets/c8317983-2729-4514-9db7-e9920e8ade3c)
+
+The two algorithms that definitely stood out as better are LightGBM and XGBoost. However
+apart from recall that had XGBoost being better with a score of 0.762 to o.737 all other
+categories were in favor of LightGBM, with it even having advantage in F1 Score. Though the difference was minimal with LightGBM having 0.703 to XGBoost having 0.702, showing
+them to be quite interchangeable.
+
+![image](https://github.com/user-attachments/assets/4656ae3f-4304-4aad-8b22-853612068aae)
+
+As discussed previously marital status seems to be the most important feature in almost
+every single algorithm and that is also true for LightGBM. It is also worth noting that with
+marital status being accounted for, age_range looses its importance to education.
+
+![image](https://github.com/user-attachments/assets/60b30221-5eb5-4a6b-9eee-24f50d1e6079)
+
+![image](https://github.com/user-attachments/assets/3557f70d-6e4b-4a9c-af3f-a280bf210676)
+
+Age_range losing its usefulness is understandable when we look at its feature dependance
+plot. With adult and elder being values that positively influence the final result and young
+adult doing the opposite it is logical that marital status can decrease the amount of
+information one can need from age_range(Married people are usually not in the young adult
+range of values).
+
+![image](https://github.com/user-attachments/assets/4268697e-5074-425d-a660-3c8ad08c2775)
+
+As expected the level of education one has is proportional to the level of income one has, and
+therefore the higher the level of education the more positive the impact it has on the final
+result of the algorithm.
+
+![image](https://github.com/user-attachments/assets/a7d50f0d-8574-44d3-b20d-92b66988b69e)
+
+What is surprising and indicates some interesting information is capital_loss-simple feature
+dependance plot. While medium capital loss correlates with low_income as one would
+expect, high capital loss does not behave in the same way. It is possible that the only people
+who can have and can risk high capital loss are those who can actually afford to have it
+because of having high income.
+
+![image](https://github.com/user-attachments/assets/d13473f6-5231-481f-bed0-9288038cd932)
+
+![image](https://github.com/user-attachments/assets/0f5f3296-4923-436f-a724-d21751e652d8)
+
+Summary
+Ultimately the models predictions had quite high accuracy and gave some interesting results,
+given that the dataset wasn’t as well balanced as one might hope for. We concluded that the
+most influential features, determining whether the person earns more than 50K per year
+were: marital-status, education-num, age-range. From this, we can conclude that people who
+are in a relationship, have higher education and are well into adulthood, have higher chances
+of earning more, than younger people, just starting to have responsibilities.
+What is interesting is that one's occupation isn’t as important as the above features. Of
+course some jobs pay better than others, however what is paid the most is experience, that
+comes with age. People working as juniors get paid less than the seniors, which makes it so
+even if the occupation is well known for being well paid, ultimately if one is just starting out,
+they don’t get paid as much as someone who works on a position that traditionally pays less,
+but after many years of promotions and bonuses, winds up paying more than what juniors
+do.
+What was most challenging during the preparation of the model, was filling in the missing
+data. Those features wound up being filled in by the most often occuring values in their
+respective columns. The solution works, however isn’t ideal. Unfortunately the correlation
+between the columns with missing values and properly established columns, were too
+insignificant to draw some useful conclusions, based on which the missing values could be
+filled.
+The most difficult part of creating the prediction model itself was deciding on which features
+to keep and which to disregard. The relationship feature has been the hardest to decide on,
+however ultimately it has been discarded, as it is very similar to the marital status feature.
+The project might be further developed, by bringing in more data that might be more recent
+than what was provided. This might show that the earning climate has changed over the
+years and what was true before is different in this ever changing economy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
