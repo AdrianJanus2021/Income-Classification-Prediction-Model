@@ -15,20 +15,35 @@ https://www.kaggle.com/datasets/lodetomasi1995/income-classification/data
 The dataset contains information about the Census Income.
 The dataset contains 32,561 rows of entries.
 In this dataset 14 explanatory variables can be found:
+
 ● age: Age of the person
+
 ● workclass: the type of work the person is doing
+
 ● fnlwgt: (final weight) the number of people the census believes the entry represents
+
 ● education: the level of education the person stopped at
+
 ● education-num: value representing education entry in a numerical form
+
 ● marital-status: the marital status of the person (if they are married or not)
+
 ● occupation: what kind of work the person is doing
+
 ● relationship: relatives of the person
+
 ● race: the race of the person
+
 ● sex: the race of the person
+
 ● capital-gain: capital gain of the person
+
 ● capital-loss: capital loss of the person
+
 ● hours-per-week: hours the person works during the week
+
 ● native-country: where the person is from
+
 Based on this data we will be able to build a predictive model allowing us to predict whether
 a person has an income lower or higher than 50K. However before building the model we
 need to prepare the dataset to get the most accurate results possible.
@@ -42,6 +57,7 @@ A new column named high_income has been created, based on the income column, it
 features False, True boolean values as this is the column which we are going to
 predict. False means that the person has income <=50K and True means the income
 is >50K.
+
 ![image](https://github.com/user-attachments/assets/e42c09fa-342d-4619-8a05-6f98e9c28507)
 
 In the column “workclass”, rows with values: “Without-pay” or “Never-worked” were
@@ -50,14 +66,17 @@ containing such values so they wouldn’t impact the predictions in any major wa
 well if someone never got paid it is obvious that their income would be below 50K
 and if by some chance they had income more than 50K we could safely say that it’s an
 anomaly, which won’t help in our predictions.
+
 ![image](https://github.com/user-attachments/assets/36426b89-b41f-4d90-ac38-fbec49fc023d)
 
 Column “fnlwgt” has been dropped. It is a number which is mostly a unique value
 and has little to none correlation between it and income.
+
 ![image](https://github.com/user-attachments/assets/028034f3-6f86-4095-8b82-edc23e743203)
 
 Column “Education” has been dropped as there exists an Education-num column
 which mirrors this column and is much more useful than the “education” feature.
+
 ![image](https://github.com/user-attachments/assets/2b021b26-9cb7-49e3-950c-b697eb467ddf)
 
 It was found that columns: workclass, occupation and native-country had “?” values
@@ -65,19 +84,23 @@ which would be considered as the missing values. There were 585, 585 and 181
 missing values like that respectively.
 To fix this problem first “?” values were changed to Nan values so that Dataiku could
 recognize them as missing values.
+
 ![image](https://github.com/user-attachments/assets/1ef49084-5f1d-43dc-a933-543e64fe4736)
 
 After that the missing values were filled by Filling the empty cells in column with
 Mode (most frequent value).
+
 ![image](https://github.com/user-attachments/assets/ccec4c9d-03d9-4929-a867-928cfd9ea14f)
 
 3. Trimming outliers
 In the search for outliers the scatter plot has been used, which is located in the chart
 tab.
 ● any capital gain greater than 28000 is considered an outlier.
+
 ![image](https://github.com/user-attachments/assets/70799a2f-3a54-4fc4-bbbf-434b272ef232)
 
 ● any capital loss greater than 2600 is considered an outlier
+
 ![image](https://github.com/user-attachments/assets/736efd57-f775-42f7-b1b8-c46ce3d496f5)
 
 ● Considering that people usually spend at least 20 hours per week on
@@ -87,14 +110,17 @@ wealthy people or maybe children of wealthy families. However, this
 kind of data does not seem to be important.
 Solution to this was to create a filter recipe with following filter
 conditions.
+
 ![image](https://github.com/user-attachments/assets/9123f391-3d11-4f0b-8ed2-7ef7a0a95cbe)
 
 ![image](https://github.com/user-attachments/assets/f8525a39-7f3e-44bd-8f93-3d94181ebf61)
 
 ● Next step is to remove outliers in the form of people older than 85.
+
 ![image](https://github.com/user-attachments/assets/ab3e452e-5acc-48f6-8317-64e8755d4fb3)
 
 In order to fix that, a condition in the filter recipe was introduced.
+
 ![image](https://github.com/user-attachments/assets/06792dfc-40eb-4b91-bf90-638dea42790d)
 
 
