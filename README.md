@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a0f4d671-7a51-4f6e-b8d5-2099d52a6eaa)# Income-Classification-Prediction-Model
+# Income-Classification-Prediction-Model
 
 Description of the problem
 The problem presented by the dataset is one that everyone at one point will face. That is
@@ -43,6 +43,7 @@ features False, True boolean values as this is the column which we are going to
 predict. False means that the person has income <=50K and True means the income
 is >50K.
 ![image](https://github.com/user-attachments/assets/e42c09fa-342d-4619-8a05-6f98e9c28507)
+
 In the column “workclass”, rows with values: “Without-pay” or “Never-worked” were
 deemed unnecessary and removed from the dataset. There were only 2-3 rows
 containing such values so they wouldn’t impact the predictions in any major way, as
@@ -50,29 +51,35 @@ well if someone never got paid it is obvious that their income would be below 50
 and if by some chance they had income more than 50K we could safely say that it’s an
 anomaly, which won’t help in our predictions.
 ![image](https://github.com/user-attachments/assets/36426b89-b41f-4d90-ac38-fbec49fc023d)
+
 Column “fnlwgt” has been dropped. It is a number which is mostly a unique value
 and has little to none correlation between it and income.
 ![image](https://github.com/user-attachments/assets/028034f3-6f86-4095-8b82-edc23e743203)
+
 Column “Education” has been dropped as there exists an Education-num column
 which mirrors this column and is much more useful than the “education” feature.
 ![image](https://github.com/user-attachments/assets/2b021b26-9cb7-49e3-950c-b697eb467ddf)
+
 It was found that columns: workclass, occupation and native-country had “?” values
 which would be considered as the missing values. There were 585, 585 and 181
 missing values like that respectively.
 To fix this problem first “?” values were changed to Nan values so that Dataiku could
 recognize them as missing values.
 ![image](https://github.com/user-attachments/assets/1ef49084-5f1d-43dc-a933-543e64fe4736)
+
 After that the missing values were filled by Filling the empty cells in column with
 Mode (most frequent value).
 ![image](https://github.com/user-attachments/assets/ccec4c9d-03d9-4929-a867-928cfd9ea14f)
 
-2. Trimming outliers
+3. Trimming outliers
 In the search for outliers the scatter plot has been used, which is located in the chart
 tab.
 ● any capital gain greater than 28000 is considered an outlier.
 ![image](https://github.com/user-attachments/assets/70799a2f-3a54-4fc4-bbbf-434b272ef232)
+
 ● any capital loss greater than 2600 is considered an outlier
 ![image](https://github.com/user-attachments/assets/736efd57-f775-42f7-b1b8-c46ce3d496f5)
+
 ● Considering that people usually spend at least 20 hours per week on
 work - it seems highly suspicious that someone working below that
 amount of time can achieve high income. Of course there may be
@@ -81,37 +88,44 @@ kind of data does not seem to be important.
 Solution to this was to create a filter recipe with following filter
 conditions.
 ![image](https://github.com/user-attachments/assets/9123f391-3d11-4f0b-8ed2-7ef7a0a95cbe)
+
 ![image](https://github.com/user-attachments/assets/f8525a39-7f3e-44bd-8f93-3d94181ebf61)
+
 ● Next step is to remove outliers in the form of people older than 85.
 ![image](https://github.com/user-attachments/assets/ab3e452e-5acc-48f6-8317-64e8755d4fb3)
+
 In order to fix that, a condition in the filter recipe was introduced.
 ![image](https://github.com/user-attachments/assets/06792dfc-40eb-4b91-bf90-638dea42790d)
 
-3. Feature engineering
+
+5. Feature engineering
 a) For further research it is wise to extend the categorisation with
 grouping people by their age with:
 ● young adults being younger than 25,
 ● adults younger than 60,
 ● and older people as elders.
 ![image](https://github.com/user-attachments/assets/9c16d1d7-2375-4a83-b0f3-b70d347028bd)
+
 b) For more clarity and easier understanding of capital loss and capital
 gain, two new tables were created: capital-loss_simple and
 capital-gain_simple respectively. Capital loss is divided in three
 groups: low(0-1200), medium(1200-1800) and high(<1800), as for
 capital gain it’s true or false these are based on statistics shows below.
 ![image](https://github.com/user-attachments/assets/e6137072-46f2-4e1e-a10a-312f67f342a7)
+
 ![image](https://github.com/user-attachments/assets/e1dd157a-2342-4e21-9289-24fa6f2a6449)
 
-4. Metadata editing
+
+7. Metadata editing
 Dataiku correctly assigned proper meanings and types. No further action was
 required.
 
-5. Missing data completion
+8. Missing data completion
 The missing data has been dealt with.
 In workclass, occupation and native-country columns, missing rows have been filled
 with the most frequently occurring values.
 
-6. Selection of learning algorithm
+9. Selection of learning algorithm
 The newly created column “high_income” from the dataset has been chosen, as the
 attribute on which to create the prediction model.
 The algorithms chosen for the initial automatic training were: Random forest,
@@ -124,10 +138,13 @@ AUC value of 0.905 and showing that the most important features are: marital-sta
 education-num, age-range, occupation, hours-per-week and relationship in
 LightGBM and capital-gain-simple in XGBoost.
 ![image](https://github.com/user-attachments/assets/6ea9295b-eecb-48e7-8896-9ec769e5cd26)
+
 At this point the model has been evaluated and further improved by adjusting the
 feature handling settings.
 ![image](https://github.com/user-attachments/assets/8c3c0d77-1614-45e4-bc14-699215ee9f15)
+
 ![image](https://github.com/user-attachments/assets/2e335d00-a9da-4403-a3e6-2292c6db7eda)
+
 The results we got were fairly satisfactory if not for the precision of the confusion matrix.
 That is why we attempted to run further sessions without marital status and/or relationship
 features to check whether the importance of being married(as seen on the plot above) is not
@@ -155,12 +172,14 @@ rational, but predicted True: actually True (1194) vs actually False (693) resul
 poor. It does resemble the confusion matrix from the previous session, but
 worse.Maybe it can be improved in the next session.
 ![image](https://github.com/user-attachments/assets/7a898970-acf6-4c14-8528-9ffb96fe5a14)
+
 Moving to feature importance. Relationship (32%) reigns over all other features. The
 second most influential feature is educational-num (15%). Relationship feature is
 double the importance than the educational-num.
 From the feature dependency plot it seems that when being a wife or husband in
 relationship status, immediately sky-rockets the influence on high income.
 ![image](https://github.com/user-attachments/assets/a374c1bd-67dd-4807-b89a-f2bf8c304901)
+
 On the graph the ‘others’ contains ‘wife’ values which are represented by dots that are
 above zero Shapley value.
 This session results in the relationship being a replacement for the turned-off marital
