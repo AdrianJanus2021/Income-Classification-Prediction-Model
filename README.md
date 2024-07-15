@@ -224,8 +224,7 @@ It is safe to make an assumption that married couples are capable of sustaining 
 income. While education (surprisingly) takes second place in importance. Obviously
 better education may lead to better earnings.
 
-## Discussion of the results and evaluation of
-the model
+## Discussion of the results and evaluation of the model
 
 After performing all the changes and choosing this time only the most interesting algorithms,
 that being: Gradient Boosted Trees, Logistic Regression, LightGBM and XGBoost. New
